@@ -4,178 +4,600 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>허채원 | Portfolio</title>
-    <meta
-      name="description"
-      content="허채원의 Data Science Researcher / LLM Engineer 포트폴리오"
-    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=Noto+Sans+KR:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+      :root {
+        --bg: #f2f0ec;
+        --ink: #111111;
+        --muted: #888880;
+        --faint: #d4d2cc;
+        --line: rgba(17, 17, 17, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", "Noto Sans KR", sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+        height: 56px;
+      }
+
+      .topbar-brand {
+        font-size: 0.92rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #fff;
+      }
+
+      .topbar-links {
+        display: flex;
+        gap: 32px;
+      }
+
+      .topbar-links a {
+        font-size: 0.88rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #555;
+        transition: color 160ms;
+      }
+
+      .topbar-links a:hover,
+      .topbar-links a.active {
+        color: #fff;
+      }
+
+      .hero {
+        background: var(--bg);
+        padding: 64px 48px 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-photo {
+        width: 156px;
+        height: 156px;
+        border-radius: 999px;
+        overflow: hidden;
+        margin-bottom: 28px;
+        border: 1px solid var(--faint);
+      }
+
+      .hero-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 22%;
+        display: block;
+      }
+
+      .hero-name {
+        font-size: clamp(2rem, 3.2vw, 2.7rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        color: var(--ink);
+        margin-bottom: 18px;
+      }
+
+      .hero-role {
+        font-size: 1.02rem;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+
+      .hero-intro {
+        font-size: 0.95rem;
+        color: var(--muted);
+        font-weight: 400;
+        line-height: 1.55;
+        margin-bottom: 24px;
+      }
+
+      .hero-divider {
+        width: 40px;
+        height: 1px;
+        background: var(--faint);
+        margin-bottom: 20px;
+      }
+
+      .hero-sub {
+        font-size: 1rem;
+        color: var(--muted);
+        line-height: 1.8;
+        font-weight: 400;
+        margin-bottom: 12px;
+        white-space: nowrap;
+        letter-spacing: 0.06em;
+      }
+
+      .hero-contact {
+        font-size: 0.92rem;
+        color: var(--muted);
+        line-height: 1.8;
+        font-weight: 400;
+        letter-spacing: 0.04em;
+      }
+
+      .hero-contact a:hover {
+        color: var(--ink);
+      }
+
+      .shell {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 48px 96px;
+      }
+
+      .section {
+        padding: 64px 0;
+        border-top: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 32px;
+        opacity: 1;
+        transform: none;
+        transition: opacity 600ms ease, transform 600ms ease;
+      }
+
+      .section.will-animate {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      .section.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      .section-label {
+        padding-top: 4px;
+      }
+
+      .section-label h2 {
+        font-size: 1.4rem;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+      }
+
+      .section-body {
+        min-width: 0;
+      }
+
+      .tl-item {
+        display: grid;
+        grid-template-columns: 96px 1fr;
+        gap: 20px;
+        padding: 40px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .tl-item:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+
+      .tl-item:last-child {
+        padding-bottom: 0;
+      }
+
+      .tl-period {
+        font-size: 0.8rem;
+        color: var(--muted);
+        line-height: 1.5;
+        font-weight: 400;
+        padding-top: 2px;
+      }
+
+      .tl-body h3 {
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 6px;
+        letter-spacing: -0.01em;
+      }
+
+      .tl-body p {
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.75;
+        font-weight: 400;
+      }
+
+      .detail-list {
+        margin: 8px 0 0 1.1em;
+        padding: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 400;
+        line-height: 1.85;
+      }
+
+      .subrole {
+        margin-top: 10px;
+        font-weight: 500;
+        color: var(--ink);
+        font-size: 0.88rem;
+      }
+
+      .meta-inline {
+        font-weight: 400;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .footer {
+        border-top: 1px solid var(--line);
+        padding-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        color: var(--faint);
+        font-weight: 400;
+      }
+
+      @media (max-width: 860px) {
+        .topbar {
+          padding: 0 24px;
+        }
+
+        .topbar-links {
+          gap: 20px;
+        }
+
+        .hero {
+          padding: 48px 24px 44px;
+        }
+
+        .hero-sub {
+          white-space: normal;
+        }
+
+        .shell {
+          padding: 0 24px 72px;
+        }
+
+        .section {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .tl-item {
+          grid-template-columns: 80px 1fr;
+          gap: 14px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .topbar-links {
+          display: none;
+        }
+
+        .hero-sub {
+          white-space: normal;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div class="page-shell">
-      <header class="hero">
-        <div class="hero-orb hero-orb-a"></div>
-        <div class="hero-orb hero-orb-b"></div>
-        <nav class="topbar">
-          <a class="brand" href="#top">Chaewon Heo</a>
-          <div class="nav-links">
-            <a href="#education">학력</a>
-            <a href="#publications">논문</a>
-            <a href="#experience">관련 경험</a>
-            <a href="#projects">프로젝트</a>
-            <a href="#awards">수상 및 장학</a>
-            <a href="#skills">기술 및 역량</a>
-          </div>
-        </nav>
+    <nav class="topbar">
+      <span class="topbar-brand">Chaewon Heo</span>
+      <div class="topbar-links">
+        <a href="#education">학력</a>
+        <a href="#publications">논문</a>
+        <a href="#experience">경험</a>
+        <a href="#projects">프로젝트</a>
+        <a href="#awards">수상</a>
+        <a href="#skills">기술</a>
+      </div>
+    </nav>
 
-        <section id="top" class="hero-content">
-          <div class="hero-copy">
-            <div class="profile-ring" aria-label="프로필 사진 자리">
-              <div class="profile-photo">
-                <img src="IMG_1312.jpg" alt="허채원 프로필 사진" />
-              </div>
-            </div>
-            <p class="eyebrow">Portfolio</p>
-            <h1>허채원</h1>
-            <p class="headline">Data Science Researcher | LLM Engineer</p>
-            <p class="subheadline">
-              Large Language Models, Conversational AI, LLM Evaluation &
-              Alignment, AI Agents
-            </p>
-            <div class="tag-list">
-              <span>LLM Research</span>
-              <span>Evaluation</span>
-              <span>Alignment</span>
-              <span>Conversational AI</span>
-              <span>Agents</span>
-            </div>
-            <div class="contact-strip">
-              <a href="mailto:heorshey99@gmail.com">heorshey99@gmail.com</a>
-              <span aria-hidden="true">|</span>
-              <span>010-8476-0626</span>
-            </div>
-          </div>
-        </section>
-        <a class="scroll-cue" href="#education">Scroll to explore</a>
-      </header>
-
-      <main class="content">
-        <section id="education" class="panel reveal">
-          <div class="section-heading">
-            <p class="section-kicker">01</p>
-            <h2>학력</h2>
-          </div>
-          <div class="timeline">
-            <article class="timeline-item">
-              <p class="item-period">연도 입력 예정</p>
-              <h3>학교 / 학위</h3>
-              <p>전공, 연구 분야, 지도교수 등 세부 내용을 여기에 추가합니다.</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="publications" class="panel reveal">
-          <div class="section-heading">
-            <p class="section-kicker">02</p>
-            <h2>논문</h2>
-          </div>
-          <div class="list-grid">
-            <article class="card">
-              <p class="card-meta">Conference / Journal</p>
-              <h3>논문 제목 입력 예정</h3>
-              <p>저자, 학회명, 연도, 핵심 기여를 정리하는 자리입니다.</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="experience" class="panel reveal">
-          <div class="section-heading">
-            <p class="section-kicker">03</p>
-            <h2>관련 경험</h2>
-          </div>
-          <div class="timeline">
-            <article class="timeline-item">
-              <p class="item-period">기간 입력 예정</p>
-              <h3>기관 / 역할</h3>
-              <p>연구, 인턴, 협업, 운영 경험 등 관련 이력을 정리합니다.</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="projects" class="panel reveal">
-          <div class="section-heading">
-            <p class="section-kicker">04</p>
-            <h2>프로젝트</h2>
-          </div>
-          <div class="list-grid">
-            <article class="card">
-              <p class="card-meta">Project Category</p>
-              <h3>프로젝트 제목 입력 예정</h3>
-              <p>
-                문제 정의, 사용 기술, 본인 역할, 결과를 짧고 선명하게 정리합니다.
-              </p>
-            </article>
-            <article class="card">
-              <p class="card-meta">Project Category</p>
-              <h3>프로젝트 제목 입력 예정</h3>
-              <p>대표 프로젝트를 여러 장의 카드로 배치할 수 있도록 구성했습니다.</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="awards" class="panel reveal">
-          <div class="section-heading">
-            <p class="section-kicker">05</p>
-            <h2>수상 및 장학</h2>
-          </div>
-          <div class="timeline">
-            <article class="timeline-item">
-              <p class="item-period">연도 입력 예정</p>
-              <h3>수상명 / 장학명</h3>
-              <p>주관 기관과 의미를 한두 줄로 적을 수 있습니다.</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="skills" class="panel reveal">
-          <div class="section-heading">
-            <p class="section-kicker">06</p>
-            <h2>기술 및 역량</h2>
-          </div>
-          <div class="skills-layout">
-            <article class="skill-group">
-              <h3>Research</h3>
-              <div class="tag-list">
-                <span>LLM Evaluation</span>
-                <span>Alignment</span>
-                <span>Conversational AI</span>
-              </div>
-            </article>
-            <article class="skill-group">
-              <h3>Engineering</h3>
-              <div class="tag-list">
-                <span>Python</span>
-                <span>PyTorch</span>
-                <span>LLM Pipeline</span>
-              </div>
-            </article>
-            <article class="skill-group">
-              <h3>Collaboration</h3>
-              <div class="tag-list">
-                <span>Research Writing</span>
-                <span>Experiment Design</span>
-                <span>Presentation</span>
-              </div>
-            </article>
-          </div>
-        </section>
-      </main>
+    <div class="hero" id="top">
+      <div class="hero-photo">
+        <img src="IMG_1312.jpg" alt="허채원 프로필 사진" />
+      </div>
+      <h1 class="hero-name">허 채 원</h1>
+      <p class="hero-role">Data Science Researcher | LLM Engineer</p>
+      <p class="hero-intro">
+        데이터로 문제를 이해하고, AI로 문제 해결을 위한 실제 시스템을 만드는 일을 좋아합니다.<br />
+        데이터에서 파악한 맥락이 모델과 파이프라인으로 자연스럽게 이어지는 과정 전체에 흥미를 느낍니다.
+      </p>
+      <div class="hero-divider"></div>
+      <p class="hero-sub">
+        Large Language Models | Conversational AI | LLM Evaluation &amp; Alignment | AI Agents
+      </p>
+      <div class="hero-contact">
+        <a href="mailto:heorshey99@gmail.com">heorshey99@gmail.com</a> &nbsp;|&nbsp;
+        <span>010-8476-0626</span>
+      </div>
     </div>
-    <script src="script.js"></script>
+
+    <div class="shell">
+      <section id="education" class="section">
+        <div class="section-label"><h2>학력</h2></div>
+        <div class="section-body">
+          <div class="tl-item">
+            <p class="tl-period">2024.03 –<br />2026.08</p>
+            <div class="tl-body">
+              <h3>서울대학교 데이터사이언스대학원</h3>
+              <p>데이터사이언스학과 석사 &nbsp;|&nbsp; 지도교수: 조요한<br />GPA 3.84 / 4.3 &nbsp;(95.4 / 100)</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <p class="tl-period">2018.03 –<br />2024.02</p>
+            <div class="tl-body">
+              <h3>서강대학교</h3>
+              <p>심리학, 문화정보경영학 학사<br />GPA 4.03 / 4.3 &nbsp;(97.9 / 100)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="publications" class="section">
+        <div class="section-label"><h2>논문</h2></div>
+        <div class="section-body">
+          <div class="tl-item">
+            <p class="tl-period">Submitted to<br />ACL 2026</p>
+            <div class="tl-body">
+              <h3>
+                <a
+                  href="https://arxiv.org/pdf/2601.07698"
+                  target="_blank"
+                  rel="noreferrer"
+                  style="color: inherit; text-decoration: underline; text-underline-offset: 3px;"
+                >
+                  Emotional Support Evaluation Framework via Controllable and Diverse Seeker Simulator
+                </a>
+              </h3>
+              <p style="margin-bottom: 8px;">Chaewon Heo, Cheyon Jin, Yohan Jo</p>
+              <ul class="detail-list">
+                <li>상담 LLM 평가 시스템 부재 문제를 해결하기 위해, 유저 시뮬레이터 기반 상담 모델 자동 평가 프레임워크 구축</li>
+                <li>유저를 정의하기 위한 9가지 psychological &amp; linguistic feature 체계 수립</li>
+                <li>OpenAI API 기반 자동 feature 태깅 파이프라인 구축 (Human annotation 대비 태깅 정확도 80% 달성)</li>
+                <li>대화 생성 → feature 재태깅 → F1 기반 정확도 측정의 end-to-end 시뮬레이터 평가 파이프라인 구축</li>
+                <li>프로필 재현도 향상을 위한 Mixture-of-Experts 기반 시뮬레이터 설계 (SFT 대비 모든 feature에서 성능 개선)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="section">
+        <div class="section-label"><h2>관련 경험</h2></div>
+        <div class="section-body">
+          <div class="tl-item">
+            <p class="tl-period">2024.01 – 2024.03,<br />2024.07 – 2024.08</p>
+            <div class="tl-body">
+              <h3>Desilo &nbsp;<span class="meta-inline">Business Analytics Team · 서울</span></h3>
+              <p class="subrole">고객 데이터 분석</p>
+              <ul class="detail-list">
+                <li>데이터 클린룸 환경에서 SQL 기반 고객 데이터 분석 수행</li>
+                <li>잠재 고객 데이터 활용 시나리오 설계</li>
+                <li>분석 인사이트 도출 및 영업 자료·서비스 개선 지원</li>
+              </ul>
+              <p class="subrole">데이터 엔지니어링</p>
+              <ul class="detail-list">
+                <li>투자 분석 대시보드 구축을 위한 핵심 지표 및 스키마 정의</li>
+                <li>마이데이터 소스 매핑 및 지표 일관성 확보</li>
+                <li>SQL 기반 Snowflake 테이블 구축 및 대시보드 분석 지원</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-item">
+            <p class="tl-period">2023.06 –<br />2023.07</p>
+            <div class="tl-body">
+              <h3>VIP Lab &nbsp;<span class="meta-inline">Google ExploreCSR Program · 서울대학교</span></h3>
+              <ul class="detail-list">
+                <li>Content-based sequential recommender systems 연구 보조</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-item">
+            <p class="tl-period">2021.03 –<br />2022.02</p>
+            <div class="tl-body">
+              <h3>Insight &nbsp;<span class="meta-inline">서강대학교 데이터사이언스 학회</span></h3>
+              <ul class="detail-list">
+                <li>데이터 수집·전처리부터 ML 모델링 및 인사이트 도출까지 프로젝트 전 과정 수행</li>
+                <li>텍스트, 수치, 이미지, 공간 데이터 등 다양한 데이터 유형 활용</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section-label"><h2>프로젝트</h2></div>
+        <div class="section-body">
+          <div class="tl-item">
+            <p class="tl-period">2025.09 –<br />2025.12</p>
+            <div class="tl-body">
+              <h3>Agent 기반 스타트업 평가 보고서 자동 생성 시스템</h3>
+              <ul class="detail-list">
+                <li>Planner-Executor 구조의 LLM 에이전트 프레임워크 설계 및 반복 정제 파이프라인 구현</li>
+                <li>ChromaDB, FAISS 기반 RAG 통합으로 문맥 인식 정보 검색 구현</li>
+                <li>적응형 쿼리 전략을 통한 안정적인 보고서 생성 달성</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-item">
+            <p class="tl-period">2024.09 –<br />2024.12</p>
+            <div class="tl-body">
+              <h3>정서 지원 LLM 성능 향상을 위한 취약 패턴 분석 및 데이터 증강</h3>
+              <ul class="detail-list">
+                <li>LLM 생성 대화의 지표별 자동 평가를 통해 성능 저하 패턴 탐지</li>
+                <li>Active Learning과 합성 데이터 생성 적용으로 데이터 17% 만으로 전체 데이터 수준 성능 달성</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-item">
+            <p class="tl-period">2023.03 –<br />2023.06</p>
+            <div class="tl-body">
+              <h3>비전 기반 학습 시간 추적 서비스</h3>
+              <ul class="detail-list">
+                <li>YouTube에서 다양한 자세·환경을 포괄하는 커스텀 영상 데이터셋 수집 및 레이블링</li>
+                <li>학습 행동 인식을 위한 ResNet50 기반 이미지 분류 모델 설계 및 학습</li>
+                <li>OpenCV·Flask 기반 학습 시간 추적 시스템 구축 및 웹 서비스 배포</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-item">
+            <p class="tl-period">2021.03 –<br />2021.06</p>
+            <div class="tl-body">
+              <h3>HR 데이터를 활용한 조직문화 분석</h3>
+              <ul class="detail-list">
+                <li>재무·HR 데이터 통합으로 기업 단위 분석 데이터셋 구축</li>
+                <li>한국어 텍스트 기반 사전과 감성 점수를 활용한 조직문화 지표 개발</li>
+                <li>클러스터링 및 시각화를 통한 조직문화 진단 시스템 구현</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tl-item">
+            <p class="tl-period">2021.09 –<br />2021.12</p>
+            <div class="tl-body">
+              <h3>공공 자전거 이용 최적화를 위한 모빌리티 데이터 분석</h3>
+              <ul class="detail-list">
+                <li>Google·Mapbox API와 H3 공간 인덱싱을 활용한 모빌리티 데이터 수집·통합</li>
+                <li>공간 이용 분석을 통해 수요 잠재력 대비 활용 저조 지역 식별</li>
+                <li>데이터 기반 수요 활성화 및 서비스 최적화 전략 제안</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="awards" class="section">
+        <div class="section-label"><h2>수상 및 장학</h2></div>
+        <div class="section-body">
+          <div class="tl-item">
+            <p class="tl-period">2023</p>
+            <div class="tl-body">
+              <h3>AI 프로그램 해커톤 1위</h3>
+              <p>CJ OliveNetworks</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <p class="tl-period">2021</p>
+            <div class="tl-body">
+              <h3>빅콘테스트 우수상 <span class="meta-inline">(이노베이션 트랙)</span></h3>
+              <p>한국정보통신진흥협회 (KAIT)</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <p class="tl-period">2021–2022</p>
+            <div class="tl-body">
+              <h3>인문 100년 장학생</h3>
+              <p>한국장학재단</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <p class="tl-period">2020</p>
+            <div class="tl-body">
+              <h3>학업우수상</h3>
+              <p>서강대학교</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section">
+        <div class="section-label"><h2>기술 및 역량</h2></div>
+        <div class="section-body">
+          <div class="tl-item">
+            <p class="tl-period" style="font-weight: 600; color: var(--ink); font-size: 0.9rem;">프로그래밍</p>
+            <div class="tl-body"><p>Python, C/C++, R</p></div>
+          </div>
+          <div class="tl-item" style="padding: 24px 0;">
+            <p class="tl-period" style="font-weight: 600; color: var(--ink); font-size: 0.9rem;">데이터베이스</p>
+            <div class="tl-body"><p>MySQL, PostgreSQL, Snowflake</p></div>
+          </div>
+          <div class="tl-item" style="padding: 24px 0;">
+            <p class="tl-period" style="font-weight: 600; color: var(--ink); font-size: 0.9rem;">자격증</p>
+            <div class="tl-body"><p>ADsP (2022), SQLD (2021)</p></div>
+          </div>
+          <div class="tl-item" style="padding: 24px 0;">
+            <p class="tl-period" style="font-weight: 600; color: var(--ink); font-size: 0.9rem;">관련 이수 과목</p>
+            <div class="tl-body"><p>머신러닝 &amp; 딥러닝, 빅데이터 시스템 &amp; 지식관리, 자료구조 &amp; 알고리즘, 대화형 AI 시스템</p></div>
+          </div>
+          <div class="tl-item" style="padding: 24px 0 0;">
+            <p class="tl-period" style="font-weight: 600; color: var(--ink); font-size: 0.9rem;">언어</p>
+            <div class="tl-body"><p>한국어 (Native), 영어 (TOEIC Speaking Advanced Low, 2025)</p></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>© 2026 허채원</span>
+      </footer>
+    </div>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.07 }
+      );
+
+      document.querySelectorAll(".section").forEach((section) => {
+        section.classList.add("will-animate");
+        observer.observe(section);
+      });
+
+      const links = document.querySelectorAll(".topbar-links a");
+      const sections = document.querySelectorAll("section[id]");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+          if (window.scrollY >= section.offsetTop - 70) {
+            current = section.id;
+          }
+        });
+
+        links.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+        });
+      });
+    </script>
   </body>
 </html>
