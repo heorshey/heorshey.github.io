@@ -344,8 +344,7 @@
       <h1 class="hero-name">허 채 원</h1>
       <p class="hero-role">Data Science Researcher | LLM Engineer</p>
       <p class="hero-intro">
-        데이터로 문제를 이해하고, AI로 문제 해결을 위한 시스템을 만드는 일을 좋아합니다.<br />
-        데이터에서 파악한 맥락이 모델과 파이프라인으로 이어지는 과정 전체에 흥미를 느낍니다.
+        복잡한 도메인과 현업 문제를 데이터와 평가 기준으로 구조화하고, 이를 바탕으로 LLM·Agent 시스템을 설계·평가·개선합니다.
       </p>
       <div class="hero-divider"></div>
       <p class="hero-sub">
@@ -365,7 +364,7 @@
             <p class="tl-period">2024.03 –<br />2026.08</p>
             <div class="tl-body">
               <h3>서울대학교 데이터사이언스대학원</h3>
-              <p>데이터사이언스학과 석사 &nbsp;|&nbsp; 지도교수: 조요한<br />GPA 3.84 / 4.3 &nbsp;(95.4 / 100)</p>
+              <p>데이터사이언스학과 석사 졸업 &nbsp;|&nbsp; 지도교수: 조요한<br />GPA 3.84 / 4.3 &nbsp;(95.4 / 100)</p>
             </div>
           </div>
           <div class="tl-item">
@@ -382,7 +381,7 @@
         <div class="section-label"><h2>논문</h2></div>
         <div class="section-body">
           <div class="tl-item">
-            <p class="tl-period">Accepted at<br />ACL 2026 Findings &amp;<br />ICML 2026 Workshop</p>
+            <p class="tl-period">ACL 2026 Findings<br />(제1저자) &amp;<br />ICML 2026 Workshop</p>
             <div class="tl-body">
               <h3>
                 <a
@@ -397,11 +396,14 @@
               </h3>
               <p style="margin-bottom: 8px;">Chaewon Heo, Cheyon Jin, Yohan Jo</p>
               <ul class="detail-list">
-                <li>다양한 환경에서 emotional support LLM을 stress-test하기 위한 유저 시뮬레이터 기반 자동 평가 프레임워크 구축</li>
+                <li>다양한 환경에서 정서 지원 LLM을 stress-test하기 위한 유저 시뮬레이터 기반 자동 평가 프레임워크 구축</li>
                 <li>유저를 정의하기 위한 9가지 psychological &amp; linguistic feature 체계 수립</li>
                 <li>OpenAI API 기반 자동 feature 태깅 파이프라인 구축 (Human annotation 대비 태깅 정확도 80% 달성)</li>
                 <li>대화 생성 → feature 재태깅 → F1 기반 정확도 측정의 end-to-end 시뮬레이터 평가 파이프라인 구축</li>
                 <li>프로필 재현도 향상을 위한 Mixture-of-Experts 기반 시뮬레이터 설계 (SFT 대비 모든 feature에서 성능 개선)</li>
+                <li>9개 심리·언어 특성 기반 사용자 프로필을 제어하는 시뮬레이터(LLaMA3-8B + LoRA expert 라우팅) 구축</li>
+                <li>전체 특성 재현도 Macro F1 0.549로 GPT-5(0.319) 포함 모든 베이스라인 대비 최고 성능, 전문가 평가에서 기존 시뮬레이터 3종 대비 평균 승률 69.5% 달성</li>
+                <li>상담 모델 7종 평가에서 저항적 사용자에게는 반복 사과, 참여도가 낮은 사용자에게는 단조로운 질문만 반복하는 등 기존 평가가 놓친 실패 패턴 진단</li>
               </ul>
             </div>
           </div>
@@ -435,20 +437,21 @@
         <div class="section-label"><h2>관련 경험</h2></div>
         <div class="section-body">
           <div class="tl-item">
-            <p class="tl-period">2026.04 –<br />Present</p>
+            <p class="tl-period">2026.04 –<br />2026.10</p>
             <div class="tl-body">
               <h3>NAVER WEBTOON &nbsp;<span class="meta-inline">Analytics Engineering Team · 분당</span></h3>
-              <p class="subrole">사내 온톨로지 기반 Text-to-SQL Agent 평가·개선 체계 구축</p>
+              <p class="subrole">사내 온톨로지 기반 Text-to-SQL Agent의 평가 체계 구축과 개선을 주도</p>
               <ul class="detail-list">
-                <li>서비스별 메트릭 구조와 집계 방식을 분석해 확장 가능한 패턴별 평가 데이터셋 템플릿을 설계하고, 4개 서비스·약 300개 항목의 Golden Dataset 구축</li>
-                <li>평가 trace에서 에이전트의 도구 사용, 온톨로지 컨텍스트, 최종 응답을 통합 분석하여 오류를 원인별로 분류하는 진단 체계 설계</li>
-                <li>오류 원인과 개선 대상을 연결해 데이터·온톨로지·에이전트 수정 프로세스를 자동화하고 반복 평가 파이프라인 구축</li>
-                <li>체계적 평가 및 개선을 통해 Text-to-SQL Agent의 평가 정확도를 40% 미만에서 85% 이상으로 향상</li>
+                <li>4개 서비스의 시간축·필터·집계 규칙 차이를 반영한 패턴별 골든셋 300여 건 구축</li>
+                <li>도구 호출·온톨로지 반환·최종 응답을 Trace 단위로 분석해, 오류를 발생 지점(온톨로지·Agent·골든셋)별로 나누는 분류 체계를 설계 → 팀 표준 오류 체계로 채택</li>
+                <li>표 구조가 다른 정답을 오답 처리하던 채점 오류를 발견·보정해, 600문항 기준 자동 판정 61.0%를 실제 78.2%로 정정</li>
+                <li>근거 추출은 Python, 원인 판단은 LLM이 맡도록 진단을 자동화해 비용과 판단 일관성 확보</li>
+                <li>진단 결과를 바탕으로 온톨로지 개선 PR 10건 이상 머지, 골든셋 기준 정답률 약 80% 달성</li>
               </ul>
             </div>
           </div>
           <div class="tl-item">
-            <p class="tl-period">2024.01 – 2024.03,<br />2024.07 – 2024.08</p>
+            <p class="tl-period">2024.01 – 2024.02,<br />2024.07 – 2024.08</p>
             <div class="tl-body">
               <h3>Desilo &nbsp;<span class="meta-inline">Business Analytics Team · 서울</span></h3>
               <p class="subrole">데이터 분석 및 잠재 고객의 데이터 활용 시나리오 제작</p>
@@ -491,13 +494,26 @@
         <div class="section-label"><h2>프로젝트</h2></div>
         <div class="section-body">
           <div class="tl-item">
-            <p class="tl-period">2025.09 –<br />2025.12</p>
+            <p class="tl-period">2026.07 –<br />진행중</p>
+            <div class="tl-body">
+              <h3>Search Agent의 탐색 행동 진단 및 RL 기반 개선 연구</h3>
+              <ul class="detail-list">
+                <li>사용자 쿼리의 편향된 관점 표현이 검색 Agent의 탐색 경로·문서 선택·최종 응답에 미치는 영향 분석</li>
+                <li>결과 지표(관점 커버리지·균형도)와 과정 지표(쿼리 다양성·탐색 깊이)로 편향 발생 단계 정량화</li>
+                <li>학습 전 Qwen3-4B가 롤아웃의 90.9%에서 검색 1회 후 바로 답변함을 확인하고, 병목이 쿼리 생성이 아닌 탐색 종료 판단임을 진단</li>
+                <li>고커버리지 탐색 궤적 기반 GRPO 학습과 중립 키워드 병행 탐색 등 완화 전략 설계·검증</li>
+              </ul>
+              <p class="subrole">Agentic RAG, RL(GRPO), Qwen3-4B, Evaluation</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <p class="tl-period">2025.03 –<br />2025.06</p>
             <div class="tl-body">
               <h3>Agent 기반 스타트업 평가 보고서 자동 생성 시스템</h3>
               <ul class="detail-list">
-                <li>Planner-Executor 구조의 LLM 에이전트 프레임워크 설계 및 반복 정제 파이프라인 구현</li>
-                <li>ChromaDB, FAISS 기반 RAG 통합으로 문맥 인식 정보 검색 구현</li>
-                <li>적응형 쿼리 전략을 통한 안정적인 보고서 생성 달성</li>
+                <li>Planner-Executor 구조의 LLM Agent 프레임워크 설계 및 반복 정제 파이프라인 구현</li>
+                <li>ChromaDB·FAISS 기반 RAG로 스타트업 사례와 산업 리포트를 검색하는 구조 구현</li>
+                <li>도메인 전문가 평가와의 오차가 GPT-4o·o3·Deep Research 등 비교 모델 중 가장 낮고, 사용자 평가에서도 최고 점수 기록</li>
               </ul>
             </div>
           </div>
@@ -601,7 +617,7 @@
           </div>
           <div class="tl-item" style="padding: 30px 0;">
             <p class="tl-period" style="font-weight: 600; color: var(--ink); font-size: 0.9rem;">AI/ML</p>
-            <div class="tl-body"><p>PyTorch, Transformers, TRL</p></div>
+            <div class="tl-body"><p>PyTorch, Transformers, TRL, LangChain, FAISS, ChromaDB</p></div>
           </div>
           <div class="tl-item" style="padding: 30px 0;">
             <p class="tl-period" style="font-weight: 600; color: var(--ink); font-size: 0.9rem;">데이터베이스</p>
